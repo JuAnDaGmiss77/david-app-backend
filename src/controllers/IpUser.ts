@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 
 export const savedIPUser = async (req: Request, res: Response) => {
   const ipFound = await Ip.findOne({ ip: req.body.ip });
+  console.log('esta es la ip'+req.body.ip)
   if (ipFound) return res.status(409).json({ message: "ip is saved" });
 
   const ip: IP = new Ip({
@@ -14,10 +15,7 @@ export const savedIPUser = async (req: Request, res: Response) => {
 
 export const getIPUser = async (req: Request, res: Response) => {
   try {
-    console.log("entrando al metodo getipuser");
     const ipFound = await Ip.findOne();
-    console.log("esta es la variable ipfound " + ipFound);
-    console.log(ipFound);
     if (ipFound) return res.status(200).json({ message: "list ip", ipFound });
 
     res.status(404).json({ message: "ip not found" });
