@@ -14,7 +14,9 @@ export const savedIPUser = async (req: Request, res: Response ) => {
 }
 
 export const getIPUser = async (req: Request, res: Response) => {
+    console.log('entrando al metodo getipuser')
     const ipFound = await Ip.findOne();
+    console.log('esta es la variable ipfound '+ipFound);
     console.log(ipFound)
     if (ipFound) return res.status(200).json({ message: "list ip" , ipFound});
 
